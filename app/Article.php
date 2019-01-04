@@ -43,4 +43,10 @@ class Article extends Model
                     ->select('article.id','user.id as user_id','title','time','class_id')
                     ->get();
     }
+
+    //添加
+    static public function addArticle($arr)
+    {
+        return self::insert($arr);
+    }
 }
