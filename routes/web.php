@@ -29,5 +29,5 @@ Route::get('/findByTitle','ArticleController@findByTitle')->name('findByTitle');
 
 Route::group(['middleware' => 'checklogin'],function(){
     //这里的路由都经过checklogin
-    
+    Route::post('/addArticle','ArticleController@addArticle')->name('addArticle');
 });

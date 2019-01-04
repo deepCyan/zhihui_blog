@@ -73,9 +73,10 @@ class ArticleController extends Controller
         $arr['time'] = $time;
         $res = Article::addArticle($arr);
         if($res){
-            $this->success();
+            return $this->success();
         }else{
-            $this->fail(300);
+            return $this->fail(300);
         }
     }
+
 }
