@@ -17,7 +17,7 @@ class CheckLogin
     {
         $is_login = $request->session()->get('user_id');
         if (!$is_login) {
-            return redirect('nologin');
+            return redirect('/api/nologin');
         }else{
             return $next($request);
         }

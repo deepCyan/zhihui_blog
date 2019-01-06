@@ -25,9 +25,11 @@ Route::get('/res','UserController@res')->name('res');
 
 Route::get('/nologin','UserController@nologin')->name('nologin');
 
+Route::get('/allArticle','ArticleController@getAllArticle')->name('getAllArticle');
+
+Route::get('/findByTitle','ArticleController@findByTitle')->name('findByTitle');
+
 Route::group(['middleware' => 'checklogin'],function(){
     //这里的路由都经过checklogin
-    Route::get('/logind',function(){
-        echo 'this is logind';
-    });
+    Route::post('/addArticle','ArticleController@addArticle')->name('addArticle');
 });
