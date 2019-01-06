@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -82,9 +83,12 @@ class UserController extends Controller
         return $this->fail(204);
     }
 
-    public function upload()
+    public function upload(Request $request)
     {
-        
+        $path = $request->file('user_pic')->store('public');
+        $real_path = Storage::url($path);
+        $arr['user_pic'] = 'http://'.$_SERVER['SERVER_NAME'].'/blog/public'.$real_path;
+        return $this->success($arr);
     }
 
     public function changeUserInfo(Type $var = null)

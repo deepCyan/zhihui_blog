@@ -12,9 +12,8 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/',function(){
+    echo '<h1>看个毛毛球呀</h1>';
 });
 
 Route::get('/login','UserController@login')->name('login');
@@ -28,6 +27,8 @@ Route::get('/nologin','UserController@nologin')->name('nologin');
 Route::get('/allArticle','ArticleController@getAllArticle')->name('getAllArticle');
 
 Route::get('/findByTitle','ArticleController@findByTitle')->name('findByTitle');
+
+Route::post('/upload','UserController@upload')->name('upload');
 
 Route::group(['middleware' => 'checklogin'],function(){
     //这里的路由都经过checklogin
