@@ -36,7 +36,7 @@ class UserController extends Controller
         if($hash == $md5_code){
             //登录成功
             session(['user_id'=>$res->id]);
-            return $this->success(['account'=>$account,'id'=>$res->id,'msg'=>'登录成功']);
+            return $this->success($res);
         }else{
             //登录失败
             return $this->fail(203);
@@ -85,13 +85,13 @@ class UserController extends Controller
 
     public function upload(Request $request)
     {
-        $path = $request->file('user_pic')->store('public');
+        $path = $request->file('img')->store('public');
         $real_path = Storage::url($path);
-        $arr['user_pic'] = 'http://'.$_SERVER['SERVER_NAME'].'/blog/public'.$real_path;
+        $arr['img_url'] = 'http://'.$_SERVER['SERVER_NAME'].'/blog/public'.$real_path;
         return $this->success($arr);
     }
 
-    public function changeUserInfo(Type $var = null)
+    public function changeUserInfo()
     {
         
     }
