@@ -20,7 +20,7 @@ class ArticleController extends Controller
         }
 
         $res = Article::getAll($skip,$page_size);
-        $count = Article::getFindCount('display',1);
+        $count = Article::count();
 
         if($res){
             return $this->successForArticle($count,$page,$page_size,$res);
@@ -82,6 +82,21 @@ class ArticleController extends Controller
         }
     }
 
+    public function findById()
+    {
+        $id = request()->input('id');
+        if(!$id){
+            return $this->fail(201);
+        }
+        $getwtach = Article::addWatch($id);
+        $res = Article::findById($id);
+        if($res){
+            return $this->success($res);
+        }else{
+            return $this->fail(300);
+        }
+    }
+
     public function addArticle()
     {
         $author_id = request()->input('author_id');
@@ -111,8 +126,7 @@ class ArticleController extends Controller
         if(!$id){
             return $this->fail(201);
         }
-        $arr['display'] = 0;
-        $res = Article::delArticle($id,$arr);
+        $res = Article::delArticle($id);
         if($res){
             return $this->success();
         }else{
@@ -120,4 +134,18 @@ class ArticleController extends Controller
         }
     }
 
+    public function restoreDel()
+    {
+        $id = request()->input('id');
+        if(!$id){
+            return $this->fail(201);
+        }
+        try {
+            $res = Article::resDel($id);
+            return $this->success();
+        } catch (\Throwable $th) {
+            throw $th;
+            return $this->fail(300);
+        }
+    }
 }

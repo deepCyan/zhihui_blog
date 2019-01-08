@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Article extends Model
 {
+    use SoftDeletes;
     /**
      * 关联到模型的数据表
      *
@@ -13,17 +15,32 @@ class Article extends Model
      */
     protected $table = 'article';
 
+    const UPDATED_AT = 'last_watch';
+
+    protected $dates = ['deleted_at'];
     //取所有
     static public function getAll($skip,$page_size)
     {
         return self::skip($skip)
                     ->take($page_size)
                     ->join('user','user.id','=','article.author_id')
-                    ->where('article.display',1)
-                    ->select('article.id','user.id as user_id','title','time','class_id')
+                    ->select('article.id','user.id as user_id','title','time','class_id','name as author_name','watch','last_watch')
                     ->get();
     }
 
+    //取单个
+    static public function findById($id)
+    {
+        return self::join('user','user.id','=','article.author_id')
+                    ->where('article.id',$id)
+                    ->select('article.id','user.id as user_id','title','time','class_id','name as author_name','watch','content','last_watch')
+                    ->get();
+    }
+    //修改浏览量
+    static public function addWatch($id)
+    {
+        return self::where('id',$id)->increment('watch',1);
+    }
     //统计数量
     static public function getFindCount($field=null,$where=null,$like=false)
     {
@@ -52,8 +69,14 @@ class Article extends Model
     }
 
     //删除
-    static public function delArticle($id,$arr)
+    static public function delArticle($id)
     {
-        return self::where('id',$id)->update($arr);
+        return self::where('id',$id)->delete();
+    }
+
+    //撤销删除
+    static public function resDel($id)
+    {
+        return self::where('id',$id)->restore();
     }
 }

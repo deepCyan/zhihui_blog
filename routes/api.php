@@ -34,11 +34,15 @@ Route::get('/getAllClassify','ClassifyController@getAll')->name('getAllClassify'
 
 Route::get('/getAllParent','ClassifyController@getAllParents')->name('getParentClass');
 
-Route::post('/upload','UserController@upload')->name('upload');
+Route::get('/getArticle','ArticleController@findById')->name('getArticle');
 
 Route::group(['middleware' => 'checklogin'],function(){
     //这里的路由都经过checklogin
     Route::post('/addArticle','ArticleController@addArticle')->name('addArticle');
 
     Route::get('/delArticle','ArticleController@del')->name('delArticle');
+
+    Route::get('/restoreDel','ArticleController@restoreDel')->name('restoreDel');
+
+    Route::post('/upload','UserController@upload')->name('upload');
 });
