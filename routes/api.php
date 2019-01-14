@@ -24,7 +24,7 @@ Route::get('/res','UserController@res')->name('res');
 
 Route::get('/nologin','UserController@nologin')->name('nologin');
 
-Route::get('/allArticle','ArticleController@getAllArticle')->name('getAllArticle');
+
 
 Route::get('/findByTitle','ArticleController@findByTitle')->name('findByTitle');
 
@@ -36,6 +36,8 @@ Route::get('/getAllParent','ClassifyController@getAllParents')->name('getParentC
 
 Route::get('/getArticle','ArticleController@findById')->name('getArticle');
 
+Route::get('/getAnswer','AnswerController@getAnswer')->name('getAnswer');
+
 Route::group(['middleware' => 'checklogin'],function(){
     //这里的路由都经过checklogin
     Route::post('/addArticle','ArticleController@addArticle')->name('addArticle');
@@ -45,4 +47,10 @@ Route::group(['middleware' => 'checklogin'],function(){
     Route::get('/restoreDel','ArticleController@restoreDel')->name('restoreDel');
 
     Route::post('/upload','UserController@upload')->name('upload');
+
+    Route::post('/addAnswer','AnswerController@addAnswer')->name('addAnswer');
+
+    Route::get('/changeUserInfo','UserController@changeUserInfo')->name('changeUserInfo');
+
+    Route::get('/allArticle','ArticleController@getAllArticle')->name('getAllArticle');
 });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\User;
 use Closure;
 
 class CheckLogin
@@ -15,7 +16,12 @@ class CheckLogin
      */
     public function handle($request, Closure $next)
     {
-        $is_login = $request->session()->get('user_id');
+        $token = $request->input('api_token');
+        if($token == null){
+            return redirect('/api/nologin');
+        }
+        $is_login = User::checkToken($token);
+        dd($is_login);
         if (!$is_login) {
             return redirect('/api/nologin');
         }else{

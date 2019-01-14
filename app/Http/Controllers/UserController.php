@@ -31,11 +31,12 @@ class UserController extends Controller
     {
         $account = request()->input('account');
         $md5_code = request()->input('md5_vcode');
+        User::createToken($account,str_random(60));
         $res = User::getUserInfo($account);
-        $hash = md5($res[0]->password.$res[0]->vcode);
+        $hash = md5($res->password.$res->vcode);
         if($hash == $md5_code){
             //登录成功
-            session(['user_id'=>$res->id]);
+            $res->password = null;
             return $this->success($res);
         }else{
             //登录失败
@@ -58,10 +59,12 @@ class UserController extends Controller
         $arr['account'] = $account;
         $arr['name'] = $name;
         $arr['password'] = $password;
-        $res = User::addUser($arr);
-        if($res){
-            return $this->success(200);
-        }else{
+        
+        try {
+            $res = User::addUser($arr);
+            return $this->success();
+        } catch (\Throwable $th) {
+            //throw $th;
             return $this->fail(300);
         }
     }
@@ -93,6 +96,20 @@ class UserController extends Controller
 
     public function changeUserInfo()
     {
-        
+        $name = request()->input('name');
+        $id = request()->input('id');
+        $user_pic = request()->input('user_pic');
+        if(!$user_pic || !$name || !$id){
+            return $this->fail(201);
+        }
+        $arr['name'] = $name;
+        $arr['user_pic'] = $user_pic;
+        try {
+            $res = User::changeUserInfo($id,$arr);
+            return $this->success();
+        } catch (\Throwable $th) {
+            //throw $th;
+            return $this->fail(300);
+        }
     }
 }

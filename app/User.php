@@ -21,6 +21,11 @@ class User extends Model
         return self::where('account',$account)->exists();
     }
 
+    static public function checkToken($token){
+        //通过token进行查询
+        return self::where('api_token',$token)->exists();
+    }
+
     static public function changeVcode($vcode,$account){
         return self::where('account',$account)->update(['vcode'=>$vcode]);
     }
@@ -31,5 +36,15 @@ class User extends Model
 
     static public function addUser($info_arr){
         return self::insert($info_arr);
+    }
+
+    static public function changeUserInfo($id,$arr)
+    {
+        return self::where('id',$id)->update($arr);
+    }
+    
+    static public function createToken($account,$api_token)
+    {
+        return self::where('account',$account)->update(['api_token'=>$api_token]);
     }
 }
