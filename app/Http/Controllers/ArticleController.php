@@ -106,16 +106,20 @@ class ArticleController extends Controller
         if (!$author_id || !$title || !$content || !$class_id) {
             return $this->fail(201);
         }
+
         $time = date('Y-m-d H:i:s',time());
         $arr['author_id'] = $author_id;
         $arr['title'] = $title;
         $arr['content'] = $content;
         $arr['class_id'] = $class_id;
         $arr['time'] = $time;
-        $res = Article::addArticle($arr);
-        if($res){
+        
+        try {
+            //code...
+            Article::addArticle($arr);
             return $this->success();
-        }else{
+        } catch (\Throwable $th) {
+            //throw $th;
             return $this->fail(300);
         }
     }

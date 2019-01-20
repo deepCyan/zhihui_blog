@@ -31,12 +31,16 @@ class UserController extends Controller
     {
         $account = request()->input('account');
         $md5_code = request()->input('md5_vcode');
+        if(!$account || !$md5_code){
+            return $this->fail(201);
+        }
         User::createToken($account,str_random(60));
         $res = User::getUserInfo($account);
         $hash = md5($res->password.$res->vcode);
         if($hash == $md5_code){
             //登录成功
             $res->password = null;
+            User::changeTime();
             return $this->success($res);
         }else{
             //登录失败
@@ -71,13 +75,11 @@ class UserController extends Controller
 
     public function logout(Request $request)
     {
-        try {
-            //code...
-            $request->session()->forget('user_id');
-        } catch (\Throwable $th) {
-            //throw $th;
-
+        $account = request()->input('account');
+        if(!$account){
+            return $this->fail(201);
         }
+        User::createToken($account,'logout');
         return $this->success(200);
     }
 

@@ -24,11 +24,11 @@ Route::get('/res','UserController@res')->name('res');
 
 Route::get('/nologin','UserController@nologin')->name('nologin');
 
-
+Route::get('/allArticle','ArticleController@getAllArticle')->name('getAllArticle');
 
 Route::get('/findByTitle','ArticleController@findByTitle')->name('findByTitle');
 
-Route::get('/findByClass','ArticleController@findByClassify')->name('findByTitle');
+Route::get('/findByClass','ArticleController@findByClassify')->name('findByClassify');
 
 Route::get('/getAllClassify','ClassifyController@getAll')->name('getAllClassify');
 
@@ -51,6 +51,4 @@ Route::group(['middleware' => 'checklogin'],function(){
     Route::post('/addAnswer','AnswerController@addAnswer')->name('addAnswer');
 
     Route::get('/changeUserInfo','UserController@changeUserInfo')->name('changeUserInfo');
-
-    Route::get('/allArticle','ArticleController@getAllArticle')->name('getAllArticle');
 });

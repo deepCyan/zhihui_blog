@@ -47,4 +47,14 @@ class User extends Model
     {
         return self::where('account',$account)->update(['api_token'=>$api_token]);
     }
+
+    static public function changeTime($token)
+    {
+        return self::where('api_token',$token)->update(['last_request_time'=>date('Y-m-d H:i:s',time())]);
+    }
+
+    static public function getLastTime($token)
+    {
+        return self::where('api_token',$token)->value('last_request_time');
+    }
 }
