@@ -38,17 +38,23 @@ Route::get('/getArticle','ArticleController@findById')->name('getArticle');
 
 Route::get('/getAnswer','AnswerController@getAnswer')->name('getAnswer');
 
+Route::get('/norole','UserController@noRole')->name('norole');
+
 Route::group(['middleware' => 'checklogin'],function(){
     //这里的路由都经过checklogin
     Route::post('/addArticle','ArticleController@addArticle')->name('addArticle');
-
-    Route::get('/delArticle','ArticleController@del')->name('delArticle');
-
-    Route::get('/restoreDel','ArticleController@restoreDel')->name('restoreDel');
 
     Route::post('/upload','UserController@upload')->name('upload');
 
     Route::post('/addAnswer','AnswerController@addAnswer')->name('addAnswer');
 
     Route::get('/changeUserInfo','UserController@changeUserInfo')->name('changeUserInfo');
+});
+
+Route::group(['middleware' => 'checkadmin'],function(){
+    Route::get('/getDel','ArticleController@getDel')->name('getDel');
+
+    Route::get('/delArticle','ArticleController@del')->name('delArticle');
+
+    Route::get('/restoreDel','ArticleController@restoreDel')->name('restoreDel');
 });

@@ -57,4 +57,9 @@ class User extends Model
     {
         return self::where('api_token',$token)->value('last_request_time');
     }
+
+    static public function getRole($token)
+    {
+        return self::where('api_token',$token)->value('role');
+    }
 }

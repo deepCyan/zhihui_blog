@@ -74,6 +74,12 @@ class Article extends Model
         return self::where('id',$id)->delete();
     }
 
+    //查询删除
+    static public function getDel()
+    {
+        return self::onlyTrashed()->get();
+    }
+
     //撤销删除
     static public function resDel($id)
     {

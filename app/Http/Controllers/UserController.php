@@ -114,4 +114,9 @@ class UserController extends Controller
             return $this->fail(300);
         }
     }
+
+    public function noRole()
+    {
+        return $this->fail(206);
+    }
 }

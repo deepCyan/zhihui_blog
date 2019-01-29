@@ -152,4 +152,19 @@ class ArticleController extends Controller
             return $this->fail(300);
         }
     }
+
+    public function getDel()
+    {
+        $page = $this->getPage();
+
+        $page_size = $this->getPageSize();
+
+        try {
+            $res = Article::getDel();
+            return $this->success($res);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return $this->fail(300);
+        }
+    }
 }
