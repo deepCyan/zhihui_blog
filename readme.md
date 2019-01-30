@@ -1,69 +1,35 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+你看那些脚印，那些被大浪冲垮的笑声
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+1. 
+       这么多年，我做过很多蠢事，可是少了一件蠢事，走错了哪怕一个小小的步伐，都可能遇不见现在的你，都可能无法和你说那么许多的话，所以到今天为止的岁月，我过的无比完美
+       我应该已经遇见了几千万的人，见过几百万人的面庞，和几万人说过了话，可是在我的认知里，总是只有两个人，一个是你，一个是别人
 
-## About Laravel
+2.
+       不知道你还记得多少你做过的梦，我记得很多，却很少有真正的噩梦，最多不过是从我家的单元楼里冲出来一条蛇，满世界的追我，后来我跑累了被咬了一下，就醒了
+       其实最可怕的梦是醒不来的，是在梦里一次一次重复让人崩溃的场景，直到最后眼前只剩下一片漆黑，不知道自己已经挣脱了梦境，迟迟不肯张眼
+       是的，我梦见过你白衣翩然远走天涯，你笑的从没有那么开心，头发也从没有那么黑亮，那头有一个近乎完美的人对你说“来这里，我陪你”
+       那本是我想要对你说的 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+3.
+      我曾经对记忆有一个精巧的形容，是这样的，它是玻璃柜子里的空气
+      你说，把那些精美的回忆装订成册子，要多厚呢，高一还是高三那么厚，还是仅仅一张薄纸，上面写着，“我都记得” 
+      已经多少年了，我懒得数了，一数，就短了
+      我啊，在空下来的时候，总爱想想跟你说过的事还有多少没有做，有多少是永远也做不到了，更多的，是我和你约好的事，已经完成了多少，就像在博物馆看那些保存用心的展品
+      再也不属于自己
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+4.
+      你问过我很多次我喜欢什么，每次我都回答的不一样，有时候喜欢钱，有时候喜欢Wi-Fi，有时候喜欢高中时候的自习课，其实这些我都很喜欢，只是你从没问过我，我不喜欢什么
+      其实也很多，但我不会告诉你的
+      我当然有问过你你喜欢什么，可是你想了半天也没想出什么实在的东西，所以我真的不知道在有些时候该送你些什么东西，所以只能在哪里看到一件东西，带给你，“这个你可能会喜欢吧”
+      然后你撇撇嘴，“这什么破玩意啊” 
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+5.
+      我们是怎么认识的，早就忘了，其实这种事，十有八九都不记得，可是仔细想一想，这真的是非常珍贵的东西，珍贵的足够每周都拿出来翻阅一次了
+      可是粗心的我们啊，都忘的一干二净
+      其实也都无所谓，只要我们知道，在很多年前，有一个美好的上午或者下午，就像在沙漠里有一块金子闪闪发光，可不必涉足去将它捡起来
 
-## Learning Laravel
+6.
+      以后，以后还能怎么办呢，每天都有很多的话想对你说，每天都想和你一起创造新的回忆，可是我怕啊，那些透亮的时光统统变成了老成的岁月，变得粗糙而萧瑟，我还能盼望什么呢，明天早上滚烫的太阳吗
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
-
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+7.
+      就算什么都剩不下，什么都染上肮脏的颜色，我也愿意相信，你还是你，我还是我 
