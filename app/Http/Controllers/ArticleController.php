@@ -72,12 +72,13 @@ class ArticleController extends Controller
             $skip = 0;
         }
 
-        $res = Article::findBySome('class_id',$class_id,$skip,$page_size);
-        $count = Article::getFindCount('class_id',$class_id);
-
-        if($res){
+        try {
+            //code...
+            $res = Article::findBySome('class_id',$class_id,$skip,$page_size);
+            $count = Article::getFindCount('class_id',$class_id);
             return $this->successForArticle($count,$page,$page_size,$res);
-        }else{
+        } catch (\Throwable $th) {
+            //throw $th;
             return $this->fail(300);
         }
     }
@@ -88,11 +89,11 @@ class ArticleController extends Controller
         if(!$id){
             return $this->fail(201);
         }
-        $getwtach = Article::addWatch($id);
-        $res = Article::findById($id);
-        if($res){
-            return $this->success($res);
-        }else{
+        try{
+            $getwtach = Article::addWatch($id);
+            $res = Article::findById($id);
+        }catch (\Throwable $th) {
+            //throw $th;
             return $this->fail(300);
         }
     }
@@ -130,10 +131,11 @@ class ArticleController extends Controller
         if(!$id){
             return $this->fail(201);
         }
-        $res = Article::delArticle($id);
-        if($res){
+        try {
+            Article::delArticle($id);
             return $this->success();
-        }else{
+        } catch (\Throwable $th) {
+            //throw $th;
             return $this->fail(300);
         }
     }

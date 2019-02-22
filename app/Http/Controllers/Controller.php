@@ -46,6 +46,13 @@ class Controller extends BaseController
         ];
     }
 
+    public function successForUpload($url){
+        return [
+            'errno' => 0,
+            'data'  => [$url]
+        ];
+    }
+
     public function getPage()
     {
         # code...

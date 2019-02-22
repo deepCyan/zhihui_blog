@@ -40,6 +40,9 @@ Route::get('/getAnswer','AnswerController@getAnswer')->name('getAnswer');
 
 Route::get('/norole','UserController@noRole')->name('norole');
 
+Route::get('/setdata','RedisController@setData');
+
+Route::get('/getdata','RedisController@getData');
 Route::group(['middleware' => 'checklogin'],function(){
     //这里的路由都经过checklogin
     Route::post('/addArticle','ArticleController@addArticle')->name('addArticle');

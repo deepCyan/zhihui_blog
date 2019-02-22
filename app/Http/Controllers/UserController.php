@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\FileController;
 
 class UserController extends Controller
 {
@@ -15,15 +16,20 @@ class UserController extends Controller
         if(!$account){
             return $this->fail(201);
         }
-        $res = User::checkUser($account);
-        if($res){
-            $vcode = rand(0000000,9999999);
-            User::changeVcode($vcode,$account);
-            $arr['vcode'] = $vcode;
-            $arr['acctount'] = $account;
-            return $this->success($arr);
-        }else{
-            return $this->fail(202);
+        try {
+            $res = User::checkUser($account);
+            if($res){
+                $vcode = rand(0000000,9999999);
+                User::changeVcode($vcode,$account);
+                $arr['vcode'] = $vcode;
+                $arr['acctount'] = $account;
+                return $this->success($arr);
+            }else{
+                return $this->fail(202);
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+            return $this->fail(300);
         }
     }
 
@@ -40,7 +46,7 @@ class UserController extends Controller
         if($hash == $md5_code){
             //登录成功
             $res->password = null;
-            User::changeTime();
+            //  User::changeTime();
             return $this->success($res);
         }else{
             //登录失败
@@ -90,10 +96,17 @@ class UserController extends Controller
 
     public function upload(Request $request)
     {
-        $path = $request->file('img')->store('public');
-        $real_path = Storage::url($path);
-        $arr['img_url'] = 'http://'.$_SERVER['SERVER_NAME'].'/blog/public'.$real_path;
-        return $this->success($arr);
+        try {
+            $path = $request->file('img')->store('public');
+            $real_path = Storage::url($path);
+            //$arr['img_url'] = 'https://'.$_SERVER['SERVER_NAME'].'/blog/public'.$real_path;
+            $url = 'https://'.$_SERVER['SERVER_NAME'].'/blog/public'.$real_path;
+            return $this->successForUpload($url);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return $this_>fail(207);
+        }
+        
     }
 
     public function changeUserInfo()

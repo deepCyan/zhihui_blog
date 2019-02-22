@@ -9,10 +9,11 @@ class ClassifyController extends Controller
 {
     public function getAll()
     {
-        $res = Classify::getAll();
-        if($res){
+        try {
+            $res = Classify::getAll();
             return $this->success($res);
-        }else{
+        } catch (\Throwable $th) {
+            //throw $th;
             return $this->fail(300);
         }
     }
