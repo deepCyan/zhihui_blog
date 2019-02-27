@@ -42,9 +42,13 @@ Route::get('/norole','UserController@noRole')->name('norole');
 
 Route::get('/setdata','RedisController@setData');
 
+Route::get('/getLast','ArticleController@getLast')->name('getLast');
+
+Route::get('/getNext','ArticleController@getNext')->name('getNext');
+
 Route::get('/getdata','RedisController@getData');
+
 Route::group(['middleware' => 'checklogin'],function(){
-    //这里的路由都经过checklogin
     Route::post('/addArticle','ArticleController@addArticle')->name('addArticle');
 
     Route::post('/upload','UserController@upload')->name('upload');
@@ -60,4 +64,12 @@ Route::group(['middleware' => 'checkadmin'],function(){
     Route::get('/delArticle','ArticleController@del')->name('delArticle');
 
     Route::get('/restoreDel','ArticleController@restoreDel')->name('restoreDel');
+
+    Route::get('/addParent','ClassifyController@addParent')->name('addParent');
+
+    Route::get('/addSon','ClassifyController@addSon')->name('addSon');
+
+    Route::get('/changeClassify','ClassifyController@changeInfo')->name('changeInfo');
+
+    Route::get('/delClassify','ClassifyController@delClassify')->name('delClassify');
 });

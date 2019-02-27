@@ -55,7 +55,7 @@ class Controller extends BaseController
 
     public function getPage()
     {
-        # code...
+        
         return $page = request()->input('page') ?? $this->page;
     }
 

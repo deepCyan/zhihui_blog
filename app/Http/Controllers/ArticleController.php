@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class ArticleController extends Controller
 {
     public function getAllArticle()
@@ -13,7 +13,7 @@ class ArticleController extends Controller
 
         $page_size = $this->getPageSize();
 
-        $skip = $page_size*$page;
+        $skip = $page_size*($page-1);
 
         if($page == 1){
             $skip = 0;
@@ -40,7 +40,7 @@ class ArticleController extends Controller
 
         $page_size = $this->getPageSize();
 
-        $skip = $page_size*$page;
+        $skip = $page_size*($page-1);
 
         if($page == 1){
             $skip = 0;
@@ -66,7 +66,7 @@ class ArticleController extends Controller
 
         $page_size = $this->getPageSize();
 
-        $skip = $page_size*$page;
+        $skip = $page_size*($page-1);
 
         if($page == 1){
             $skip = 0;
@@ -92,6 +92,7 @@ class ArticleController extends Controller
         try{
             $getwtach = Article::addWatch($id);
             $res = Article::findById($id);
+            return $this->success($res);
         }catch (\Throwable $th) {
             //throw $th;
             return $this->fail(300);
@@ -108,9 +109,11 @@ class ArticleController extends Controller
             return $this->fail(201);
         }
 
+        //规避xss
+        $rel_title = htmlentities($title);
         $time = date('Y-m-d H:i:s',time());
         $arr['author_id'] = $author_id;
-        $arr['title'] = $title;
+        $arr['title'] = $rel_title;
         $arr['content'] = $content;
         $arr['class_id'] = $class_id;
         $arr['time'] = $time;
@@ -163,6 +166,37 @@ class ArticleController extends Controller
 
         try {
             $res = Article::getDel();
+            $count = count($res);
+            return $this->successForArticle($count,$page,$page_size,$res);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return $this->fail(300);
+        }
+    }
+
+    public function getLast(){
+        $id = request()->input('id');
+        if(!$id){
+            return $this->fail(201);
+        }
+        try {
+            $res = Article::getLast($id);
+            return $this->success($res);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return $this->fail(300);
+        }
+
+    }
+
+    public function getNext()
+    {
+        $id = request()->input('id');
+        if(!$id){
+            return $this->fail(201);
+        }
+        try {
+            $res = Article::getNext($id);
             return $this->success($res);
         } catch (\Throwable $th) {
             //throw $th;

@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Controllers\FileController;
 
 class UserController extends Controller
 {

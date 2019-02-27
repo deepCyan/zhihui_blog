@@ -85,4 +85,16 @@ class Article extends Model
     {
         return self::where('id',$id)->restore();
     }
+
+    //取上一条
+    static public function getLast($id)
+    {
+        return self::where('id','<',$id)->orderBy('id','desc')->first();
+    }
+
+    //取下一条
+    static public function getNext($id)
+    {
+        return self::where('id','>',$id)->first();
+    }
 }
