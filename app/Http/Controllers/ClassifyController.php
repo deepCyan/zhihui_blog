@@ -113,4 +113,29 @@ class ClassifyController extends Controller
         Classify::read_del($class_id);
         return $this->success();
     }
+
+    public function treeClassify()
+    {
+        $res = Classify::getAll();
+        $result = $this->getTree($res);
+        return $this->success($result);
+    }
+
+    private function getTree($arr,$id=0)
+    {
+        $row = [];
+		foreach($arr as $k=>$v){
+			if($v['parent_id'] == $id){
+				$row[$k] = $v;
+				$row[$k]['children'] = $this->getTree($arr,$v['id']);
+			}
+		}
+		return $row;
+    }
+
+    public function getSonClassify()
+    {
+        $res = Classify::getSonClassify();
+        return $this->success($res);
+    }
 }

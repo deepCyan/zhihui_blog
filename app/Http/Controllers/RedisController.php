@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
+use Curl\Curl;
 
 class RedisController extends Controller
 {
@@ -28,5 +29,10 @@ class RedisController extends Controller
         } catch (\Throwable $th) {
             throw $th;
         }
+    }
+
+    public function test(){
+        $curl = new Curl();
+        dd($curl);
     }
 }

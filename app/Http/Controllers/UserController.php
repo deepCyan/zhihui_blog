@@ -104,7 +104,6 @@ class UserController extends Controller
             //throw $th;
             return $this_>fail(207);
         }
-        
     }
 
     public function changeUserInfo()

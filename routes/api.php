@@ -48,6 +48,12 @@ Route::get('/getNext','ArticleController@getNext')->name('getNext');
 
 Route::get('/getdata','RedisController@getData');
 
+Route::get('/getTree','ClassifyController@treeClassify')->name('getTree');
+
+Route::get('/getSonClassify','ClassifyController@getSonClassify')->name('getSon');
+
+Route::get('/test','RedisController@test');
+
 Route::group(['middleware' => 'checklogin'],function(){
     Route::post('/addArticle','ArticleController@addArticle')->name('addArticle');
 

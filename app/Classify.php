@@ -38,4 +38,9 @@ class Classify extends Model
     {
         return self::where('id',$id)->delete();
     }
+
+    static public function getSonClassify()
+    {
+        return self::where('parent_id','<>',0)->get();
+    }
 }
