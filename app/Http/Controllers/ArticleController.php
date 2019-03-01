@@ -19,12 +19,12 @@ class ArticleController extends Controller
             $skip = 0;
         }
 
-        $res = Article::getAll($skip,$page_size);
-        $count = Article::count();
-
-        if($res){
+        try {
+            $res = Article::getAll($skip,$page_size);
+            $count = Article::count();
             return $this->successForArticle($count,$page,$page_size,$res);
-        }else{
+        } catch (\Throwable $th) {
+            //throw $th;
             return $this->fail(300);
         }
     }

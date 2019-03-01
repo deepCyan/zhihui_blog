@@ -54,6 +54,14 @@ Route::get('/getSonClassify','ClassifyController@getSonClassify')->name('getSon'
 
 Route::get('/test','RedisController@test');
 
+Route::get('/getAllSmile','SmileController@getAll')->name('getSmile');
+
+Route::get('/delSmile','SmileController@del')->name('delSmile');
+
+Route::get('/resdelSmile','SmileController@redel')->name('resdelSmile');
+
+Route::get('/getdelSmile','SmileController@getDel')->name('getdelSmile');
+
 Route::group(['middleware' => 'checklogin'],function(){
     Route::post('/addArticle','ArticleController@addArticle')->name('addArticle');
 
