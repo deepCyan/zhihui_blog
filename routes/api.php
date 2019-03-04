@@ -56,6 +56,16 @@ Route::get('/test','RedisController@test');
 
 Route::get('/getAllSmile','SmileController@getAll')->name('getSmile');
 
+Route::get('/addMessage','MessageController@addMessage')->name('addMessage');
+
+Route::get('/getAllMessage','MessageController@getAllMessage')->name('getAllMessage');
+
+Route::get('/delMessage','MessageController@del')->name('delMessage');
+
+Route::get('/redelMessage','MessageController@redel')->name('redelMessage');
+
+Route::get('/getDelMessage','MessageController@getDel')->name('getDelMessage');
+
 Route::group(['middleware' => 'checklogin'],function(){
     Route::post('/addArticle','ArticleController@addArticle')->name('addArticle');
 
