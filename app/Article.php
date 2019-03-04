@@ -59,6 +59,7 @@ class Article extends Model
                     ->take($page_size)
                     ->join('user','user.id','=','article.author_id')
                     ->select('article.id','user.id as user_id','title','time','class_id','foreword','foreimg')
+                    ->orderBy('article.id','desc')
                     ->get();
     }
 

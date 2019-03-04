@@ -20,7 +20,10 @@ class Smile extends Model
 
     static public function getAll($skip,$page_size)
     {
-        return self::skip($skip)->take($page_size)->get();
+        return self::skip($skip)
+                    ->take($page_size)
+                    ->orderBy('id','desc')
+                    ->get();
     }
 
     static public function changeSmile($id,$arr)

@@ -18,7 +18,7 @@ class Message extends Model
 
     static public function getAll($skip,$page_size)
     {
-        return self::skip($skip)->take($page_size)->get();
+        return self::skip($skip)->take($page_size)->orderBy('time','desc')->get();
     }
 
     static public function delMessage($id)

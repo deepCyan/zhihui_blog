@@ -45,7 +45,7 @@ class MessageController extends Controller
         }
 
         $res = Message::getAll($skip,$page_size);
-        $count = count($res);
+        $count = Message::count();
         return $this->successForArticle($count,$page,$page_size,$res);
     }
 
