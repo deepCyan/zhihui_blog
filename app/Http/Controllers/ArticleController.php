@@ -105,7 +105,10 @@ class ArticleController extends Controller
         $title = request()->input('title');
         $content = request()->input('content');
         $class_id = request()->input('class_id');
-        if (!$author_id || !$title || !$content || !$class_id) {
+        $foreword =request()->input('foreword');
+        $foreimg =request()->input('foreimg');
+
+        if (!$author_id || !$title || !$content || !$class_id || !$foreword) {
             return $this->fail(201);
         }
 
@@ -117,9 +120,10 @@ class ArticleController extends Controller
         $arr['content'] = $content;
         $arr['class_id'] = $class_id;
         $arr['time'] = $time;
+        $arr['foreword'] = $foreword;
+        $arr['foreimg'] = $foreimg;
         
         try {
-            //code...
             Article::addArticle($arr);
             return $this->success();
         } catch (\Throwable $th) {

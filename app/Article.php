@@ -24,7 +24,7 @@ class Article extends Model
         return self::skip($skip)
                     ->take($page_size)
                     ->join('user','user.id','=','article.author_id')
-                    ->select('article.id','user.id as user_id','title','time','class_id','name as author_name','watch','last_watch')
+                    ->select('article.id','user.id as user_id','title','time','class_id','name as author_name','watch','last_watch','foreword','foreimg')
                     ->get();
     }
 
@@ -58,7 +58,7 @@ class Article extends Model
                     ->skip($skip)
                     ->take($page_size)
                     ->join('user','user.id','=','article.author_id')
-                    ->select('article.id','user.id as user_id','title','time','class_id')
+                    ->select('article.id','user.id as user_id','title','time','class_id','foreword','foreimg')
                     ->get();
     }
 

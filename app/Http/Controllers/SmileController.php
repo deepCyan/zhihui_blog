@@ -61,11 +61,17 @@ class SmileController extends Controller
 
     public function getDel()
     {
+        $page = $this->getPage();
+
+        $page_size = $this->getPageSize();
+
         $res = Smile::getDel();
-        return $this->success($res);
+        $count = count($res);
+        return $this->successForArticle($count,$page,$page_size,$res);
     }
 
-    public function change($arr,$id){
+    public function change($arr,$id)
+    {
         $id = request()->input('id');
         if(!$id){
             return $this->fail(201);
@@ -89,5 +95,23 @@ class SmileController extends Controller
         }else{
             return $this->fail(201);
         }
+    }
+
+    public function addSmile()
+    {
+        $content = request()->input('content');
+        $user_name = request()->input('name');
+        if(!$content || !$user_name){
+            return $this->fail(201);
+        }
+        $arr['content'] = $content;
+        $arr['user_name'] = $user_name;
+        $arr['time'] = date('Y-m-d H:i:s',time());
+        $img = request()->input('img');
+        if($img){
+            $arr['img'] = $img;
+        }
+        Smile::addSmile($arr);
+        return $this->success();
     }
 }
