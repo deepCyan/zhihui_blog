@@ -114,4 +114,16 @@ class SmileController extends Controller
         Smile::addSmile($arr);
         return $this->success();
     }
+
+    public function changeSmile()
+    {
+        $id = request()->input('id');
+        $content = request()->input('content');
+        if(!$id || !$content){
+            return $this->fail(201);
+        }
+        $arr['content'] = $content;
+        Smile::changeSmile($id,$content);
+        return $this->success();
+    }
 }

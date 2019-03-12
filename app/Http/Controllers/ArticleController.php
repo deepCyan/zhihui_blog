@@ -207,4 +207,35 @@ class ArticleController extends Controller
             return $this->fail(300);
         }
     }
+
+    public function changeArticle()
+    {
+        $id = request()->input('id');
+        if(!$id){
+            return $this->fail(201);
+        }
+        $arr = array();
+        $author_id = request()->input('author_id');
+        $title = request()->input('title');
+        $class_id = request()->input('class_id');
+        $content = request()->input('content');
+        $foreword = request()->input('foreword');
+        if($author_id){
+            $arr['author_id'] = $author_id;
+        }
+        if($title){
+            $arr['title'] = $title;
+        }
+        if($class_id){
+            $arr['class_id'] = $class_id;
+        }
+        if($content){
+            $arr['content'] = $content;
+        }
+        if($foreword){
+            $arr['foreword'] = $foreword;
+        }
+        Article::changeArticle($id,$arr);
+        return $this->success();
+    }
 }

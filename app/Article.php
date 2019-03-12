@@ -33,7 +33,7 @@ class Article extends Model
     {
         return self::join('user','user.id','=','article.author_id')
                     ->where('article.id',$id)
-                    ->select('article.id','user.id as user_id','title','time','class_id','name as author_name','watch','content','last_watch')
+                    ->select('article.id','user.id as user_id','title','time','class_id','name as author_name','watch','content','last_watch','foreword')
                     ->get();
     }
     //修改浏览量
@@ -97,5 +97,11 @@ class Article extends Model
     static public function getNext($id)
     {
         return self::where('id','>',$id)->first();
+    }
+
+    //修改
+    static public function changeArticle($id,$arr)
+    {
+        return self::where('id',$id)->update($arr);
     }
 }

@@ -60,12 +60,6 @@ Route::get('/addMessage','MessageController@addMessage')->name('addMessage');
 
 Route::get('/getAllMessage','MessageController@getAllMessage')->name('getAllMessage');
 
-Route::get('/delMessage','MessageController@del')->name('delMessage');
-
-Route::get('/redelMessage','MessageController@redel')->name('redelMessage');
-
-Route::get('/getDelMessage','MessageController@getDel')->name('getDelMessage');
-
 Route::group(['middleware' => 'checklogin'],function(){
     Route::post('/addArticle','ArticleController@addArticle')->name('addArticle');
 
@@ -98,4 +92,14 @@ Route::group(['middleware' => 'checkadmin'],function(){
     Route::get('/getdelSmile','SmileController@getDel')->name('getdelSmile');
 
     Route::get('/addSmile','SmileController@addSmile')->name('addSmile');
+
+    Route::get('/changeSmile', 'SmileController@changeSmile');    
+
+    Route::get('/delMessage','MessageController@del')->name('delMessage');
+
+    Route::get('/redelMessage','MessageController@redel')->name('redelMessage');
+
+    Route::get('/getDelMessage','MessageController@getDel')->name('getDelMessage');
+
+    Route::post('/changeArticle', 'ArticleController@changeArticle');
 });
