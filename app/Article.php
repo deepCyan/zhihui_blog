@@ -52,10 +52,15 @@ class Article extends Model
     }
 
     //查询
-    static public function findBySome($field,$where,$skip,$page_size)
+    static public function findBySome($field,$where,$skip,$page_size,$like=true)
     {
-        return self::where($field,'like','%'.$where.'%')
-                    ->skip($skip)
+        $res = [];
+        if($like){
+            $res = self::where($field,'like','%'.$where.'%');
+        }else{
+            $res = self::where($field,$where);
+        }
+        return $res->skip($skip)
                     ->take($page_size)
                     ->join('user','user.id','=','article.author_id')
                     ->select('article.id','user.id as user_id','title','time','class_id','foreword','foreimg')

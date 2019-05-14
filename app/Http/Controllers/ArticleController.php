@@ -73,8 +73,7 @@ class ArticleController extends Controller
         }
 
         try {
-            //code...
-            $res = Article::findBySome('class_id',$class_id,$skip,$page_size);
+            $res = Article::findBySome('class_id',$class_id,$skip,$page_size,false);
             $count = Article::getFindCount('class_id',$class_id);
             return $this->successForArticle($count,$page,$page_size,$res);
         } catch (\Throwable $th) {
