@@ -88,15 +88,15 @@ class Article extends Model
     }
 
     //取上一条
-    static public function getLast($id)
+    static public function getLast($id,$class_id)
     {
-        return self::where('id','<',$id)->orderBy('id','desc')->first();
+        return self::where('id','<',$id)->where('class_id',$class_id)->orderBy('id','desc')->first();
     }
 
     //取下一条
-    static public function getNext($id)
+    static public function getNext($id,$class_id)
     {
-        return self::where('id','>',$id)->first();
+        return self::where('id','>',$id)->where('class_id',$class_id)->first();
     }
 
     //修改

@@ -180,11 +180,12 @@ class ArticleController extends Controller
 
     public function getLast(){
         $id = request()->input('id');
+        $class_id = request()->input('class_id');
         if(!$id){
             return $this->fail(201);
         }
         try {
-            $res = Article::getLast($id);
+            $res = Article::getLast($id,$class_id);
             return $this->success($res);
         } catch (\Throwable $th) {
             //throw $th;
@@ -196,11 +197,12 @@ class ArticleController extends Controller
     public function getNext()
     {
         $id = request()->input('id');
+        $class_id = request()->input('class_id');
         if(!$id){
             return $this->fail(201);
         }
         try {
-            $res = Article::getNext($id);
+            $res = Article::getNext($id,$class_id);
             return $this->success($res);
         } catch (\Throwable $th) {
             //throw $th;
@@ -237,5 +239,17 @@ class ArticleController extends Controller
         }
         Article::changeArticle($id,$arr);
         return $this->success();
+    }
+
+    //  规定参数只能是数组
+    public function mustArr(array $arr)
+    {
+        
+    }
+
+    //  规定参数只能是Request的实例
+    public function mustReq(Request $requset)
+    {
+        
     }
 }
