@@ -60,6 +60,8 @@ Route::get('/addMessage','MessageController@addMessage')->name('addMessage');
 
 Route::get('/getAllMessage','MessageController@getAllMessage')->name('getAllMessage');
 
+Route::get('/testSome','MessageController@testSome');
+
 Route::group(['middleware' => 'checklogin'],function(){
     Route::post('/addArticle','ArticleController@addArticle')->name('addArticle');
 

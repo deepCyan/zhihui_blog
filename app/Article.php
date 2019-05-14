@@ -81,9 +81,14 @@ class Article extends Model
     }
 
     //查询删除
-    static public function getDel()
+    static public function getDel($skip,$page_size)
     {
-        return self::onlyTrashed()->get();
+        return self::onlyTrashed()->take($page_size)->skip($skip)->get();
+    }
+
+    //删除的数目
+    static public function getDelNum(){
+        return self::onlyTrashed()->count();
     }
 
     //撤销删除

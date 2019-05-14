@@ -167,9 +167,10 @@ class ArticleController extends Controller
 
         $page_size = $this->getPageSize();
 
+        $skip = $page_size*($page-1);
         try {
-            $res = Article::getDel();
-            $count = count($res);
+            $res = Article::getDel($skip,$page_size);
+            $count = Article::getDelNum();
             return $this->successForArticle($count,$page,$page_size,$res);
         } catch (\Throwable $th) {
             //throw $th;

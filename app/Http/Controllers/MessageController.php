@@ -79,4 +79,11 @@ class MessageController extends Controller
         $count = count($res);
         return $this->successForArticle($count,$page,$page_size,$res);
     }
+
+    public function testSome()
+    {
+        echo '<pre>';
+        var_dump($_SERVER);
+        echo '</pre>';
+    }
 }
