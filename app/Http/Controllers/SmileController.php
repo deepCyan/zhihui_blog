@@ -70,19 +70,15 @@ class SmileController extends Controller
         return $this->successForArticle($count,$page,$page_size,$res);
     }
 
-    public function change($arr,$id)
+    public function change()
     {
         $id = request()->input('id');
         if(!$id){
             return $this->fail(201);
         }
         $content = request()->input('content');
-        $img = request()->input('content');
         if($content){
             $arr['content'] = $content;
-        }
-        if($img){
-            $arr['img'] = $img;
         }
         if($content || $img){
             try {

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class UserController extends Controller
 {
@@ -26,7 +28,7 @@ class UserController extends Controller
                 return $this->fail(202);
             }
         } catch (\Throwable $th) {
-            //throw $th;
+            throw $th;
             return $this->fail(300);
         }
     }
@@ -128,5 +130,36 @@ class UserController extends Controller
     public function noRole()
     {
         return $this->fail(206);
+    }
+
+    public function jwt(Request $request)
+    {
+        $user = User::first();
+        $token = JWTAuth::fromUser($user);
+        
+        //dd(JWTAuth::decode($token));
+        // grab credentials from the request
+        $credentials = $request->only('account','password');
+        try {
+            // attempt to verify the credentials and create a token for the user
+            //  Illuminate\Auth\EloquentUserProvider::class 中的validateCredentials方法进行了修改才能返回token
+
+            //  JWTAuth::attempt->
+            //      \Tymon\JWTAuth\Providers\Auth\Illuminate->byCredentials()
+            //      \Illuminate\Auth\SessionGuard->once()->validate()->hasValidCredentials()
+            //      \Illuminate\Auth\EloquentUserProvider->validateCredentials()  这里进行hash处理
+            //      return $this->hasher->check($plain, password_hash($user->getAuthPassword(),PASSWORD_DEFAULT));
+            //      \Illuminate\Hashing\AbstractHasher->check()
+            //      这个check方法使用password_verify来进行校验,但是传参数的时候并没有做hash处理 所以一直是false 将传参位置进行hash处理
+            if (! $token = JWTAuth::attempt($credentials)) {
+                return response()->json(['error' => 'invalid_credentials'], 401);
+            }
+        } catch (JWTException $e) {
+            // something went wrong whilst attempting to encode the token
+            return response()->json(['error' => 'could_not_create_token'], 500);
+        }
+
+        // all good so return the token
+        return response()->json(compact('token'));
     }
 }

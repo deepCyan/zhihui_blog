@@ -62,6 +62,10 @@ Route::get('/getAllMessage','MessageController@getAllMessage')->name('getAllMess
 
 Route::get('/testSome','MessageController@testSome');
 
+
+Route::get('/jwt', 'UserController@jwt');
+
+
 Route::group(['middleware' => 'checklogin'],function(){
     Route::post('/addArticle','ArticleController@addArticle')->name('addArticle');
 
@@ -95,7 +99,7 @@ Route::group(['middleware' => 'checkadmin'],function(){
 
     Route::get('/addSmile','SmileController@addSmile')->name('addSmile');
 
-    Route::get('/changeSmile', 'SmileController@changeSmile');    
+    Route::get('/changeSmile', 'SmileController@change');    
 
     Route::get('/delMessage','MessageController@del')->name('delMessage');
 
