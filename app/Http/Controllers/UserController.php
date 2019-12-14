@@ -104,7 +104,7 @@ class UserController extends Controller
             return $this->successForUpload($url);
         } catch (\Throwable $th) {
             //throw $th;
-            return $this_>fail(207);
+            return $this->fail(207);
         }
     }
 

@@ -65,6 +65,7 @@ Route::get('/testSome','MessageController@testSome');
 
 Route::get('/jwt', 'UserController@jwt');
 
+Route::get('/testimage','ImageController@gettest');
 
 Route::group(['middleware' => 'checklogin'],function(){
     Route::post('/addArticle','ArticleController@addArticle')->name('addArticle');
